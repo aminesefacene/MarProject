@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotateSpeed: 50
+  rb: {fileID: 0}
 --- !u!65 &144201905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -156,8 +157,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.9, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.4, y: 0.4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0.05}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +235,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -294,13 +296,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.00000013240823, y: 0.7071068, z: -0.7071068, w: -0.00000013240823}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -9.15, y: 15.51, z: -8.52}
   m_LocalScale: {x: 1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 180.00002, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ccbffbb48b24a1eb0e205cd8f8660d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 0}
 --- !u!1 &688312718 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: c555380d8833344d3a083dc46b474351,
@@ -387,7 +401,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 074569d224eee4d32abe50f581e3d0ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.81
+      value: 1.485
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 074569d224eee4d32abe50f581e3d0ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -428,6 +442,10 @@ Prefab:
     - target: {fileID: 400024, guid: 074569d224eee4d32abe50f581e3d0ab, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.9797
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 074569d224eee4d32abe50f581e3d0ab, type: 3}
+      propertyPath: m_Name
+      value: car
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 074569d224eee4d32abe50f581e3d0ab, type: 3}
