@@ -53,8 +53,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\CameraFollowCar.cs" />
-     <Compile Include="Assets\Script\moveCar.cs" />
+     <Compile Include="Assets\Script\CameraReplayMode.cs" />
+     <Compile Include="Assets\Script\CheckPoint.cs" />
+     <Compile Include="Assets\Script\GameManager.cs" />
+     <Compile Include="Assets\Script\HoverMotor.cs" />
+     <Compile Include="Assets\Script\PlayButton.cs" />
+     <Compile Include="Assets\Script\ReplayGhost.cs" />
+     <Compile Include="Assets\Script\ResultScene\ResultText.cs" />
+     <Compile Include="Assets\Script\TimeManager.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/miola/Documents/mar/MarProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
