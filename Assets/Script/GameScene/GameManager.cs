@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour {
     private int count;
     private GameObject ghost;
 
+    //cameras
+    private Camera mainCamera;
+    private Camera replayCamera1;
+    private Camera replayCamera2;
+    private Camera replayCamera3;
+    private Camera replayCamera4;
 
     public List<GameObject> cpList = new List<GameObject>();
     public GameObject car;
@@ -63,6 +69,12 @@ public class GameManager : MonoBehaviour {
                 }
                 break;
             case 4:
+                mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+                replayCamera1 = GameObject.Find("Camera1").GetComponent<Camera>();
+                replayCamera2 = GameObject.Find("Camera2").GetComponent<Camera>();
+                replayCamera3 = GameObject.Find("Camera3").GetComponent<Camera>();
+                replayCamera4 = GameObject.Find("Camera4").GetComponent<Camera>();
+
                 bf = new BinaryFormatter();
                 if (File.Exists(path))
                 {
@@ -107,6 +119,9 @@ public class GameManager : MonoBehaviour {
                 GMUpdate();
                 break;
             case 4:
+
+                changeCameraReplay();
+
                 List<GhostState> savedl = data.GetList();
                 GhostState savedg = savedl[count];
                 Vector3 savedPosition = new Vector3(savedg.GetPositionX(), savedg.GetPositionY(), savedg.GetPositionZ());
@@ -115,6 +130,48 @@ public class GameManager : MonoBehaviour {
                 carRigidbody.transform.rotation = savedRotation;
                 count++;
                 GMUpdate();
+                break;
+        }
+    }
+
+    public void changeCameraReplay()
+    {
+        switch (currentCp.name) {
+            case "checkpoint1":
+                mainCamera.enabled = false;
+                replayCamera1.enabled = true;
+                replayCamera2.enabled = false;
+                replayCamera3.enabled = false;
+                replayCamera4.enabled = false;
+
+                replayCamera1.transform.LookAt(car.transform);
+                break;
+            case "checkpoint2":
+                mainCamera.enabled = false;
+                replayCamera1.enabled = false;
+                replayCamera2.enabled = true;
+                replayCamera3.enabled = false;
+                replayCamera4.enabled = false;
+
+                replayCamera2.transform.LookAt(car.transform);
+                break;
+            case "checkpoint3":
+                mainCamera.enabled = false;
+                replayCamera1.enabled = false;
+                replayCamera2.enabled = false;
+                replayCamera3.enabled = true;
+                replayCamera4.enabled = false;
+
+                replayCamera3.transform.LookAt(car.transform);
+                break;
+            case "finnishLine":
+                mainCamera.enabled = false;
+                replayCamera1.enabled = false;
+                replayCamera2.enabled = false;
+                replayCamera3.enabled = false;
+                replayCamera4.enabled = true;
+
+                replayCamera4.transform.LookAt(car.transform);
                 break;
         }
     }
