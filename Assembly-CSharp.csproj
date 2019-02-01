@@ -54,11 +54,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\CameraReplayMode.cs" />
-     <Compile Include="Assets\Script\CheckPoint.cs" />
-     <Compile Include="Assets\Script\GameManager.cs" />
-     <Compile Include="Assets\Script\HoverMotor.cs" />
-     <Compile Include="Assets\Script\PlayButton.cs" />
-     <Compile Include="Assets\Script\ReplayGhost.cs" />
+     <Compile Include="Assets\Script\GameScene\CheckPoint.cs" />
+     <Compile Include="Assets\Script\GameScene\GameManager.cs" />
+     <Compile Include="Assets\Script\GameScene\HoverMotor.cs" />
+     <Compile Include="Assets\Script\MenuScene\GhostRace.cs" />
+     <Compile Include="Assets\Script\MenuScene\PlayButton.cs" />
+     <Compile Include="Assets\Script\MenuScene\RecordButton.cs" />
+     <Compile Include="Assets\Script\MenuScene\ReplayRace.cs" />
+     <Compile Include="Assets\Script\ResultScene\GoToMenuButton.cs" />
      <Compile Include="Assets\Script\ResultScene\ResultText.cs" />
      <Compile Include="Assets\Script\TimeManager.cs" />
  <Reference Include="UnityEditor.StandardEvents">

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour {
 
     public static float timer;
+    public static int mode;
 
     public void StartTimer()
     {
@@ -14,11 +15,20 @@ public class TimeManager : MonoBehaviour {
     public void UpdateTimer()
     {
         timer += Time.deltaTime;
-        //Debug.Log("timer : " + timer);
     }
 
     public float GetTimer()
     {
         return timer;
+    }
+
+    public void SetMode(int m)
+    {
+        mode = m;
+    }
+
+    public int GetMode()
+    {
+        return mode;
     }
 }
