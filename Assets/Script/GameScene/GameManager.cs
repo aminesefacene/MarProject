@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
     private ListGhostState data;
     private int count;
     private GameObject ghost;
+    private List<GhostState> l;
 
     //cameras
     private Camera mainCamera;
@@ -27,6 +28,12 @@ public class GameManager : MonoBehaviour {
     private Camera replayCamera2;
     private Camera replayCamera3;
     private Camera replayCamera4;
+    private Camera replayCamera5;
+    private Camera replayCamera6;
+    private Camera replayCamera7;
+
+    //cameras CP
+    public GameObject currentCpCamera;
 
     public List<GameObject> cpList = new List<GameObject>();
     public GameObject car;
@@ -62,6 +69,7 @@ public class GameManager : MonoBehaviour {
                     count = 0;
                     file = File.OpenRead(path);
                     data = (ListGhostState)bf.Deserialize(file);
+                    l = data.GetList();
                 }
                 else
                 {
@@ -74,6 +82,9 @@ public class GameManager : MonoBehaviour {
                 replayCamera2 = GameObject.Find("Camera2").GetComponent<Camera>();
                 replayCamera3 = GameObject.Find("Camera3").GetComponent<Camera>();
                 replayCamera4 = GameObject.Find("Camera4").GetComponent<Camera>();
+                replayCamera5 = GameObject.Find("Camera5").GetComponent<Camera>();
+                replayCamera6 = GameObject.Find("Camera6").GetComponent<Camera>();
+                replayCamera7 = GameObject.Find("Camera7").GetComponent<Camera>();
 
                 bf = new BinaryFormatter();
                 if (File.Exists(path))
@@ -94,6 +105,7 @@ public class GameManager : MonoBehaviour {
         car = GameObject.Find("car");
         carRigidbody = car.GetComponent<Rigidbody>();
         currentCp = GameObject.Find("checkpoint1");
+        currentCpCamera = GameObject.Find("checkpointCamera1");
         cpList.Add(currentCp); 
     }
 	
@@ -109,13 +121,17 @@ public class GameManager : MonoBehaviour {
                 GMUpdate();
                 break;
             case 3:
-                List<GhostState> l = data.GetList();
-                GhostState g = l[count];
+                GhostState g;
+                g = l[count];
                 Vector3 ghostPosition = new Vector3(g.GetPositionX(), g.GetPositionY(), g.GetPositionZ());
                 Quaternion ghostRotation = new Quaternion(g.GetRotationX(), g.GetRotationY(), g.GetRotationZ(), 1f);
                 ghost.transform.position = ghostPosition;
                 ghost.transform.rotation = ghostRotation;
-                count++;
+                //on vérifie si le ghost à terminer ça course
+                if (count < l.Count-1)
+                {
+                    count++;
+                }
                 GMUpdate();
                 break;
             case 4:
@@ -128,7 +144,12 @@ public class GameManager : MonoBehaviour {
                 Quaternion savedRotation = new Quaternion(savedg.GetRotationX(), savedg.GetRotationY(), savedg.GetRotationZ(), 1f);
                 carRigidbody.transform.position = savedPosition;
                 carRigidbody.transform.rotation = savedRotation;
-                count++;
+
+                //on vérifie si la voiture à terminer ça course
+                if (count < savedl.Count - 1)
+                {
+                    count++;
+                }
                 GMUpdate();
                 break;
         }
@@ -136,42 +157,90 @@ public class GameManager : MonoBehaviour {
 
     public void changeCameraReplay()
     {
-        switch (currentCp.name) {
-            case "checkpoint1":
+        switch (currentCpCamera.name) {
+            case "checkpointCamera1":
                 mainCamera.enabled = false;
                 replayCamera1.enabled = true;
                 replayCamera2.enabled = false;
                 replayCamera3.enabled = false;
                 replayCamera4.enabled = false;
+                replayCamera5.enabled = false;
+                replayCamera6.enabled = false;
+                replayCamera7.enabled = false;
 
                 replayCamera1.transform.LookAt(car.transform);
                 break;
-            case "checkpoint2":
+            case "checkpointCamera2":
                 mainCamera.enabled = false;
                 replayCamera1.enabled = false;
                 replayCamera2.enabled = true;
                 replayCamera3.enabled = false;
                 replayCamera4.enabled = false;
+                replayCamera5.enabled = false;
+                replayCamera6.enabled = false;
+                replayCamera7.enabled = false;
 
                 replayCamera2.transform.LookAt(car.transform);
                 break;
-            case "checkpoint3":
+            case "checkpointCamera3":
                 mainCamera.enabled = false;
                 replayCamera1.enabled = false;
                 replayCamera2.enabled = false;
                 replayCamera3.enabled = true;
                 replayCamera4.enabled = false;
+                replayCamera5.enabled = false;
+                replayCamera6.enabled = false;
+                replayCamera7.enabled = false;
 
                 replayCamera3.transform.LookAt(car.transform);
                 break;
-            case "finnishLine":
+            case "checkpointCamera4":
                 mainCamera.enabled = false;
                 replayCamera1.enabled = false;
                 replayCamera2.enabled = false;
                 replayCamera3.enabled = false;
                 replayCamera4.enabled = true;
+                replayCamera5.enabled = false;
+                replayCamera6.enabled = false;
+                replayCamera7.enabled = false;
 
                 replayCamera4.transform.LookAt(car.transform);
+                break;
+            case "checkpointCamera5":
+                mainCamera.enabled = false;
+                replayCamera1.enabled = false;
+                replayCamera2.enabled = false;
+                replayCamera3.enabled = false;
+                replayCamera4.enabled = false;
+                replayCamera5.enabled = true;
+                replayCamera6.enabled = false;
+                replayCamera7.enabled = false;
+
+                replayCamera5.transform.LookAt(car.transform);
+                break;
+            case "checkpointCamera6":
+                mainCamera.enabled = false;
+                replayCamera1.enabled = false;
+                replayCamera2.enabled = false;
+                replayCamera3.enabled = false;
+                replayCamera4.enabled = false;
+                replayCamera5.enabled = false;
+                replayCamera6.enabled = true;
+                replayCamera7.enabled = false;
+
+                replayCamera6.transform.LookAt(car.transform);
+                break;
+            case "checkpointCamera7":
+                mainCamera.enabled = false;
+                replayCamera1.enabled = false;
+                replayCamera2.enabled = false;
+                replayCamera3.enabled = false;
+                replayCamera4.enabled = false;
+                replayCamera5.enabled = false;
+                replayCamera6.enabled = false;
+                replayCamera7.enabled = true;
+
+                replayCamera7.transform.LookAt(car.transform);
                 break;
         }
     }
@@ -191,6 +260,9 @@ public class GameManager : MonoBehaviour {
                     file.Close();
                     break;
                 case 3:
+                    file.Close();
+                    break;
+                case 4:
                     file.Close();
                     break;
             }
@@ -219,6 +291,11 @@ public class GameManager : MonoBehaviour {
         currentCp = newCp;
     }
 
+    public void SetNewCPCamera(GameObject newCpCamera)
+    {
+        currentCpCamera = newCpCamera;
+    }
+
     public GameObject GetCurrentCp()
     {
         return currentCp;
@@ -234,7 +311,7 @@ public class GameManager : MonoBehaviour {
 
     public bool TestFinish()
     {
-        return (cpList.Count == 4) && (cpList[cpList.Count - 1].name == "finnishLine");
+        return (cpList.Count == 4) && (cpList[cpList.Count - 1].name == "finishLine");
     }
 
     public void ResetLastCp()

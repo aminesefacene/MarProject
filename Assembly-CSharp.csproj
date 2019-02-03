@@ -53,8 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\CameraReplayMode.cs" />
      <Compile Include="Assets\Script\GameScene\CheckPoint.cs" />
+     <Compile Include="Assets\Script\GameScene\CheckpointCamera.cs" />
      <Compile Include="Assets\Script\GameScene\GameManager.cs" />
      <Compile Include="Assets\Script\GameScene\HoverMotor.cs" />
      <Compile Include="Assets\Script\MenuScene\GhostRace.cs" />
