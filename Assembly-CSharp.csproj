@@ -58,6 +58,7 @@
      <Compile Include="Assets\Script\GameScene\GameManager.cs" />
      <Compile Include="Assets\Script\GameScene\HoverMotor.cs" />
      <Compile Include="Assets\Script\GameScene\MoveObstacle.cs" />
+     <Compile Include="Assets\Script\GameScene\SpeedValue.cs" />
      <Compile Include="Assets\Script\MenuScene\GhostRace.cs" />
      <Compile Include="Assets\Script\MenuScene\PlayButton.cs" />
      <Compile Include="Assets\Script\MenuScene\RecordButton.cs" />
